@@ -29,6 +29,9 @@ export class RestaurantResolver {
     @Args('input') updateRestaurantDto: UpdateRestaurantDto,
   ): Promise<boolean> {
     try {
+      if(updateRestaurantDto.name) {
+        await this.restaurantService.updateRestaurantName(updateRestaurantDto);
+      }
       await this.restaurantService.updateRestaurant(updateRestaurantDto);
       return true;
     } catch (e) {
